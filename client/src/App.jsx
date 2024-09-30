@@ -1,12 +1,13 @@
-import './App.css'
+import "./App.css";
+import Post from "./components/Post";
 
 function App() {
-
   return (
     <>
-    <p>I am a blog app.</p>
+      <p>I am a blog app.</p>
+      <Post />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
