@@ -1,11 +1,11 @@
 import "./App.css";
-import Post from "./components/Post";
+import PostList from "./components/PostList";
 
 function App() {
   return (
     <>
       <p>I am a blog app.</p>
-      <Post />
+      <PostList />
     </>
   );
 }
