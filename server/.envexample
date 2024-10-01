@@ -1,0 +1,4 @@
+USER="username"
+HOST="localhost"
+DATABASE="blogapp"
+PASSWORD="password"

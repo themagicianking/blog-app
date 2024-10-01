@@ -16,10 +16,12 @@ const pool = new Pool({
 APP.use(express.json());
 APP.use(cors());
 
-const DATABASE = await pool.connect();
-DATABASE.release();
-
-APP.get("/", async (req, res) => {});
+APP.get("/posts", async (req, res) => {
+  const DATABASE = await pool.connect();
+  DATABASE.release();
+  const POSTS = await DATABASE.query("SELECT * FROM blogposts;");
+  res.json(POSTS.rows);
+});
 
 APP.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
