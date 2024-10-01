@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Post from "./Post";
 
 export default function PostList() {
   const [posts, setPosts] = useState(null);
@@ -26,7 +27,12 @@ export default function PostList() {
       {posts ? (
         <ul>
           {posts.map((post) => (
-            <li key={post.id}>{post.body}</li>
+            <Post
+              key={post.id}
+              body={post.body}
+              author={post.author}
+              createdat={post.createdat}
+            />
           ))}
         </ul>
       ) : (
