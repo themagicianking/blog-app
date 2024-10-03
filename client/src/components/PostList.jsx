@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import Post from "./Post";
 
-// reformat created at
+// reformat created at so it is a more readable date
+// add js that cuts preview text off at a certain character length
+// add link in post that takes you to lightbox view of post by itself
+// add photo preview?
+// add post title
 
 export default function PostList() {
   const [posts, setPosts] = useState(null);
