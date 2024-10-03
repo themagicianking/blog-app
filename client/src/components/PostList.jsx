@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Post from "./Post";
 
 // add js that cuts preview text off at a certain character length
 // add link in post that takes you to lightbox view of post by itself
@@ -35,6 +34,11 @@ export default function PostList() {
     });
   }
 
+  function trimBody(body) {
+    let trimmedBody = body.slice(0, 250);
+    return trimmedBody.length < body.length ? trimmedBody + "..." : trimmedBody;
+  }
+
   return (
     <>
       {posts ? (
@@ -58,7 +62,9 @@ export default function PostList() {
                         </div>
                       </div>
 
-                      <div className="text-slate-500">{post.body}</div>
+                      <div className="text-slate-500">
+                        {trimBody(post.body)}
+                      </div>
                     </div>
                   ))}
                 </div>
