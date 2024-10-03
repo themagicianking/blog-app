@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export default function CreatePost() {
   const [message, setMessage] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
 
   async function submitPost(post) {
     await fetch("http://localhost:5000/posts", {
@@ -22,6 +23,7 @@ export default function CreatePost() {
       author: event.target.author.value.replace("'", "''"),
     };
     submitPost(NEWPOST);
+    setSubmitted(true);
   }
 
   // {message ? (<p>{message}</p>) : (<p>Submit your post.</p>)}
@@ -34,7 +36,7 @@ export default function CreatePost() {
         type="button"
         onClick={() => setShowModal(true)}
       >
-        Open regular modal
+        Create a new post
       </button>
       {showModal ? (
         <>
@@ -55,30 +57,27 @@ export default function CreatePost() {
                   </button>
                 </div>
                 {/*body*/}
-                <div className="relative p-6 flex-auto">
-                  <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                    I always felt like I could do anything. That’s the main
-                    thing people are controlled by! Thoughts- their perception
-                    of themselves! They're slowed down by their perception of
-                    themselves. If you're taught you can’t do anything, you
-                    won’t do anything. I was taught I could do everything.
-                  </p>
-                </div>
+                {submitted ? (
+                  <p>{message}</p>
+                ) : (
+                  <form onSubmit={handleSubmit}>
+                    <label htmlFor="title">Title</label>
+                    <input id="title" name="title " type="text"></input>
+                    <label htmlFor="body">Body</label>
+                    <input id="body" name="body " type="text"></input>
+                    <label>Name</label>
+                    <input id="author" name="author" type="text"></input>
+                    <button type="submit">Create Post</button>
+                  </form>
+                )}
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => {setShowModal(false), setSubmitted(false)}}
                   >
                     Close
-                  </button>
-                  <button
-                    className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={() => setShowModal(false)}
-                  >
-                    Save Changes
                   </button>
                 </div>
               </div>
@@ -89,18 +88,4 @@ export default function CreatePost() {
       ) : null}
     </>
   );
-
-  // return (
-  //   <>
-  //       <form onSubmit={handleSubmit}>
-  //         <label htmlFor="title">Title</label>
-  //         <input id="title" name="title " type="text"></input>
-  //         <label htmlFor="body">Body</label>
-  //         <input id="body" name="body " type="text"></input>
-  //         <label>Name</label>
-  //         <input id="author" name="author" type="text"></input>
-  //         <button type="submit">Create Post</button>
-  //       </form>
-  //   </>
-  // );
 }
