@@ -23,6 +23,20 @@ APP.get("/posts", async (req, res) => {
   res.json(POSTS.rows);
 });
 
+APP.post("/posts", async (req, res) => {
+  const DATABASE = await pool.connect();
+  DATABASE.release();
+  try {
+    const POST = await DATABASE.query(
+      `INSERT INTO blogposts (body, author) VALUES ('${req.body.body}', '${req.body.author}');`
+    );
+    res.send(POST);
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({ e });
+  }
+});
+
 APP.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
