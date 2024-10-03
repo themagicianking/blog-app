@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-// add js that cuts preview text off at a certain character length
 // add link in post that takes you to lightbox view of post by itself
 // add photo preview?
 // add post title
@@ -48,7 +47,7 @@ export default function PostList() {
               <div className="w-full max-w-3xl mx-auto">
                 <div className="-my-6">
                   {posts.map((post) => (
-                    <div className="relative pl-8 sm:pl-32 py-6 group">
+                    <div key={post.id} className="relative pl-8 sm:pl-32 py-6 group">
                       <div className="font-medium text-indigo-500 mb-1 sm:mb-0">
                         {post.author}
                       </div>
@@ -58,7 +57,7 @@ export default function PostList() {
                           {createDate(post.createdat)}
                         </time>
                         <div className="text-xl font-bold text-slate-900">
-                          {post.title}Title
+                          {post.title}
                         </div>
                       </div>
 

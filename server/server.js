@@ -28,7 +28,7 @@ APP.post("/posts", async (req, res) => {
   DATABASE.release();
   try {
     const POST = await DATABASE.query(
-      `INSERT INTO blogposts (body, author) VALUES ('${req.body.body}', '${req.body.author}');`
+      `INSERT INTO blogposts (title, body, author) VALUES ('${req.body.title}', '${req.body.body}', '${req.body.author}');`
     );
     res.send(POST);
   } catch (e) {
