@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Post from "./Post";
 
+// reformat created at
+
 export default function PostList() {
   const [posts, setPosts] = useState(null);
 
@@ -25,59 +27,34 @@ export default function PostList() {
   return (
     <>
       {posts ? (
-        <div className="bg-white py-24 sm:py-32">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="mx-auto max-w-2xl lg:mx-0">
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                From the blog
-              </h2>
-              <p className="mt-2 text-lg leading-8 text-gray-600">
-                Learn how to grow your business with our expert advice.
-              </p>
-            </div>
-            <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-              {posts.map((post) => (
-                <article
-                  key={post.id}
-                  className="flex max-w-xl flex-col items-start justify-between"
-                >
-                  <div className="flex items-center gap-x-4 text-xs">
-                    <time dateTime={post.datetime} className="text-gray-500">
-                      {/* {post.date} */}
-                    </time>
-                    <a
-                      // href={post.category.href}
-                      className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
-                    >
-                      {/* {post.category.title} */}
-                    </a>
-                  </div>
-                  <div className="group relative">
-                    <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                      <a href="">
-                        <span className="absolute inset-0" />
-                        Title
-                      </a>
-                    </h3>
-                    <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
-                      {/* {post.description} */}
-                    </p>
-                  </div>
-                  <div className="relative mt-8 flex items-center gap-x-4">
-                    <img
-                      alt=""
-                      // src={post.author.imageUrl}
-                      className="h-10 w-10 rounded-full bg-gray-50"
-                    />
-                    <div className="text-sm leading-6">
-                      {/* <p className="text-gray-600">{post.author.role}</p> */}
+        <section className="relative min-h-screen flex flex-col justify-center bg-slate-50 overflow-hidden">
+          <div className="w-full max-w-6xl mx-auto px-4 md:px-6 py-24">
+            <div className="flex flex-col justify-center divide-y divide-slate-200 [&>*]:py-16">
+              <div className="w-full max-w-3xl mx-auto">
+                <div className="-my-6">
+                  {posts.map((post) => (
+                    <div className="relative pl-8 sm:pl-32 py-6 group">
+                      <div className="font-medium text-indigo-500 mb-1 sm:mb-0">
+                        {post.author}
+                      </div>
+
+                      <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-indigo-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
+                        <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-20 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full">
+                          {post.createdat}
+                        </time>
+                        <div className="text-xl font-bold text-slate-900">
+                          {post.title}Title
+                        </div>
+                      </div>
+
+                      <div className="text-slate-500">{post.body}</div>
                     </div>
-                  </div>
-                </article>
-              ))}
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
       ) : (
         <p>loading...</p>
       )}
