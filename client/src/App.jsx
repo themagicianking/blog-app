@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@material-tailwind/react";
+import { useState, useEffect } from "react";
 import Post from "./components/Post";
 import PostList from "./components/PostList";
 import CreatePost from "./components/CreatePost";
@@ -275,20 +276,45 @@ function App() {
       },
     },
   };
+  const [post, setPost] = useState(null);
+  const [selectedId, setSelectedId] = useState(1);
+
+  async function fetchPost(id) {
+    await fetch(`http://localhost:5000/post?id=${id}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setPost(data[0]);
+      });
+  }
+
+  function updateId(id) {
+    setSelectedId(id);
+    fetchPost(selectedId);
+  }
+
+  useEffect(() => {
+    fetchPost(selectedId);
+  }, []);
+
   return (
     <ThemeProvider value={customTheme}>
       <>
         <h1>Thane's Blog Site</h1>
         <div className="main-content">
-          <Post
-            key={0}
-            body={"Hi! I'm an extremely temporary example."}
-            author={"Thane"}
-            title={"Example Post"}
-            createdat={"Today"}
-          />
+          {post ? (
+            <Post
+              body={post.body}
+              author={post.author}
+              title={post.title}
+              createdat={post.createdat}
+            />
+          ) : (
+            <p>loading posts...</p>
+          )}
           <div className="post-list">
-            <PostList />
+            <PostList updateId={updateId} />
           </div>
         </div>
 

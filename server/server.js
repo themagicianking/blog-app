@@ -23,6 +23,15 @@ APP.get("/posts", async (req, res) => {
   res.json(POSTS.rows);
 });
 
+APP.get("/post", async (req, res) => {
+  const DATABASE = await pool.connect();
+  DATABASE.release();
+  const POST = await DATABASE.query(
+    `SELECT * FROM blogposts WHERE blogposts.id=${req.query.id}`
+  );
+  res.json(POST.rows);
+});
+
 APP.post("/posts", async (req, res) => {
   const DATABASE = await pool.connect();
   DATABASE.release();
