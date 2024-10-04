@@ -33,6 +33,7 @@ export default function PostList() {
             <ListItem
               selected={selected === post.id}
               onClick={() => setSelectedItem(post.id)}
+              key={post.id}
             >
               <ItemContent
                 key={post.id}
@@ -48,18 +49,4 @@ export default function PostList() {
       )}
     </Card>
   );
-
-  // return (
-  //   <>
-  //     {posts ? (
-  //       <ul>
-  //         {posts.map((post) => (
-
-  //         ))}
-  //       </ul>
-  //     ) : (
-  //       <p>loading...</p>
-  //     )}
-  //   </>
-  // );
 }
