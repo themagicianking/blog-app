@@ -14,7 +14,7 @@ Click on the link given next to "host" and the app should display in your browse
 ## Project Goals and Requirements
 - to do: add titles to posts [x]
 - to do: update readme with instructions and visuals [x]
-- to do: add comments
+- to do: add comments [x]
 - to do: add styling (use tailwind) [x]
 - to do: add ai feature
 - to do: add required/non required fields to post submission [x]

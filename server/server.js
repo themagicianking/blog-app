@@ -16,6 +16,7 @@ const pool = new Pool({
 APP.use(express.json());
 APP.use(cors());
 
+// endpoint for all posts in the database
 APP.get("/posts", async (req, res) => {
   const DATABASE = await pool.connect();
   DATABASE.release();
@@ -23,6 +24,7 @@ APP.get("/posts", async (req, res) => {
   res.json(POSTS.rows);
 });
 
+// endpoint to fetch single post by id
 APP.get("/post", async (req, res) => {
   const DATABASE = await pool.connect();
   DATABASE.release();
@@ -32,12 +34,13 @@ APP.get("/post", async (req, res) => {
   res.json(POST.rows);
 });
 
+// endpoint to add new post to the database
 APP.post("/posts", async (req, res) => {
   const DATABASE = await pool.connect();
   DATABASE.release();
   try {
     const POST = await DATABASE.query(
-      `INSERT INTO blogposts (body, author) VALUES ('${req.body.body}', '${req.body.author}');`
+      `INSERT INTO blogposts (title, body, author) VALUES ('${req.body.title}', '${req.body.body}', '${req.body.author}');`
     );
     res.send(POST);
   } catch (e) {

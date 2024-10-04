@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import ItemContent from "./ItemContent";
 import { List, ListItem, Card } from "@material-tailwind/react";
+import ItemContent from "./ItemContent";
+
+// component that creates a list view of all posts
 
 export default function PostList({ updateId }) {
   const [posts, setPosts] = useState(null);
@@ -10,6 +12,7 @@ export default function PostList({ updateId }) {
     updateId(selected);
   };
 
+  // fetches all posts from the server
   async function loadPosts() {
     try {
       await fetch("http://localhost:5000/posts")

@@ -10,8 +10,10 @@ import {
   Typography,
 } from "@material-tailwind/react";
 
+// form that adds a new post to the server
+// will eventually add fields to add an image link and alt id
+
 export default function CreatePost() {
-  const [message, setMessage] = useState(null);
   const [open, setOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -21,7 +23,6 @@ export default function CreatePost() {
       body: JSON.stringify(post),
       headers: { "Content-Type": "application/json" },
     }).then((res) => {
-      setMessage("Post created successfully.");
       return res.json();
     });
   }
@@ -88,8 +89,8 @@ export default function CreatePost() {
             <DialogBody>
               <div className="grid gap-6">
                 <Input id="title" label="Post Title" />
-                <Input id="author" label="Your Name" required/>
-                <Textarea id="body" label="Post text goes here." required/>
+                <Input id="author" label="Your Name" required />
+                <Textarea id="body" label="Post text goes here." required />
               </div>
             </DialogBody>
             <DialogFooter className="space-x-2">
@@ -106,15 +107,3 @@ export default function CreatePost() {
     </>
   );
 }
-// return (
-//   <>
-//     <form onSubmit={handleSubmit}>
-//       <label htmlFor="body">Create post</label>
-//       <input id="body" name="body " type="text"></input>
-//       <label>Name</label>
-//       <input id="author" name="author" type="text"></input>
-//       <button type="submit">Create Post</button>
-//     </form>
-//     {message ? <p>{message}</p> : <p>Submit your post.</p>}
-//   </>
-// );

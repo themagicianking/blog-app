@@ -4,9 +4,10 @@ import Post from "./components/Post";
 import PostList from "./components/PostList";
 import CreatePost from "./components/CreatePost";
 
-// create an on click event for each list item that updates selected post info so it can be moved to the post component
+// the main app is mounted here
 
 function App() {
+  //setting material tailwind theme
   const customTheme = {
     card: {
       defaultProps: {
@@ -277,8 +278,10 @@ function App() {
     },
   };
   const [post, setPost] = useState(null);
+  // variable to determine which post to display in the main view based on what the user last clicked on in the list
   const [selectedId, setSelectedId] = useState(1);
 
+  // fetches post that matches the id of last clicked-on post in the list
   async function fetchPost(id) {
     await fetch(`http://localhost:5000/post?id=${id}`)
       .then((res) => {
@@ -289,6 +292,7 @@ function App() {
       });
   }
 
+  // callback function to update last clicked post and rerender the component
   function updateId(id) {
     setSelectedId(id);
     fetchPost(selectedId);

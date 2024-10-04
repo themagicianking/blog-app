@@ -5,7 +5,18 @@ import {
   Typography,
 } from "@material-tailwind/react";
 
+// component for the display view of a post
+
 export default function Post({ src, alt, author, title, body, createdat }) {
+  // formats the date so it is more readable
+  function createDate(date) {
+    return new Date(date).toLocaleDateString("en-us", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  }
+
   return (
     <Card className="w-full max-w-[48rem] flex-row">
       {src ? (
@@ -27,7 +38,8 @@ export default function Post({ src, alt, author, title, body, createdat }) {
           {title}
         </Typography>
         <Typography color="gray" className="mb-8 font-normal">
-          {body} created at {createdat}
+          {body}
+          <p><i>Created on {createDate(createdat)}</i></p>
         </Typography>
       </CardBody>
     </Card>
