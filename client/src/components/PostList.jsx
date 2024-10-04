@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
-import Post from "./Post";
+import ItemContent from "./ItemContent";
+import { List, ListItem, Card } from "@material-tailwind/react";
 
-export default function PostList() {
+export default function PostList({ updateId }) {
   const [posts, setPosts] = useState(null);
+  const [selected, setSelected] = useState(1);
+  const setSelectedItem = (value) => {
+    setSelected(value);
+    updateId(selected);
+  };
 
   async function loadPosts() {
     try {
@@ -23,21 +29,29 @@ export default function PostList() {
   }, []);
 
   return (
-    <>
+    <Card className="w-96">
       {posts ? (
-        <ul>
+        <List>
           {posts.map((post) => (
-            <Post
+            <ListItem
+              selected={selected === post.id}
+              onClick={() => {
+                setSelectedItem(post.id);
+              }}
               key={post.id}
-              body={post.body}
-              author={post.author}
-              createdat={post.createdat}
-            />
+            >
+              <ItemContent
+                key={post.id}
+                body={post.body}
+                title={post.title}
+                createdat={post.createdat}
+              />
+            </ListItem>
           ))}
-        </ul>
+        </List>
       ) : (
-        <p>loading...</p>
+        <></>
       )}
-    </>
+    </Card>
   );
 }
