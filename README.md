@@ -20,4 +20,5 @@ Click on the link given next to "host" and the app should display in your browse
 - to do: add required/non required fields to post submission [x]
 - to do: add individual post view [x]
 - to do: clean up testing from trying to install jest
+- to do: add testing to every component
 - to do/stretch goal: add ability to add photos to posts
