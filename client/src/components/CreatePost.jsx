@@ -88,8 +88,8 @@ export default function CreatePost() {
             <DialogBody>
               <div className="grid gap-6">
                 <Input id="title" label="Post Title" />
-                <Input id="author" label="Your Name" />
-                <Textarea id="body" label="Post text goes here." />
+                <Input id="author" label="Your Name" required/>
+                <Textarea id="body" label="Post text goes here." required/>
               </div>
             </DialogBody>
             <DialogFooter className="space-x-2">
