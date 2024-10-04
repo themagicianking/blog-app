@@ -287,7 +287,9 @@ function App() {
             title={"Example Post"}
             createdat={"Today"}
           />
-          <PostList />
+          <div className="post-list">
+            <PostList />
+          </div>
         </div>
 
         <CreatePost />
