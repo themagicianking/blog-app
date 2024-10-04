@@ -5,16 +5,20 @@ import {
   Typography,
 } from "@material-tailwind/react";
 
-export default function Post({ src, alt, author, title, body }) {
+export default function Post({ src, alt, author, title, body, createdat }) {
   return (
     <Card className="w-full max-w-[48rem] flex-row">
-      <CardHeader
-        shadow={false}
-        floated={false}
-        className="m-0 w-2/5 shrink-0 rounded-r-none"
-      >
-        <img src={src} alt={alt} className="h-full w-full object-cover" />
-      </CardHeader>
+      {src ? (
+        <CardHeader
+          shadow={false}
+          floated={false}
+          className="m-0 w-2/5 shrink-0 rounded-r-none"
+        >
+          <img src={src} alt={alt} className="h-full w-full object-cover" />
+        </CardHeader>
+      ) : (
+        <p></p>
+      )}
       <CardBody>
         <Typography variant="h6" color="gray" className="mb-4 uppercase">
           {author}
@@ -23,7 +27,7 @@ export default function Post({ src, alt, author, title, body }) {
           {title}
         </Typography>
         <Typography color="gray" className="mb-8 font-normal">
-          {body}
+          {body} created at {createdat}
         </Typography>
       </CardBody>
     </Card>

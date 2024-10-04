@@ -22,6 +22,8 @@ export default function PostList() {
     loadPosts();
   }, []);
 
+  console.log(posts);
+
   return (
     <>
       {posts ? (
@@ -31,6 +33,7 @@ export default function PostList() {
               key={post.id}
               body={post.body}
               author={post.author}
+              title={post.title}
               createdat={post.createdat}
             />
           ))}

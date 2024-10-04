@@ -3,12 +3,14 @@ import Post from "./components/Post";
 import PostList from "./components/PostList";
 import CreatePost from "./components/CreatePost";
 
+// create an on click event for each list item that updates selected post info so it can be moved to the post component
+
 function App() {
   const customTheme = {
     card: {
       defaultProps: {
         variant: "filled",
-        color: "green",
+        color: "light-green",
         shadow: true,
         className: "",
       },
@@ -278,7 +280,13 @@ function App() {
       <>
         <h1>Thane's Blog Site</h1>
         <div className="main-content">
-          <Post />
+          <Post
+            key={0}
+            body={"Hi! I'm an extremely temporary example."}
+            author={"Thane"}
+            title={"Example Post"}
+            createdat={"Today"}
+          />
           <PostList />
         </div>
 
