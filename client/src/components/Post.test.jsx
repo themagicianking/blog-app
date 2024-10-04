@@ -9,4 +9,7 @@ describe('Post', () => {
 
     screen.debug();
   });
+  // check if minimum required information is being rendered
+  it('renders required information', () => {  
+  })
 });

@@ -42,6 +42,9 @@ export default function CreatePost() {
   const handleOpen = () => {
     setIsSubmitted(false);
     setOpen(!open);
+    if (open) {
+      location.reload();
+    }
   };
 
   return (
